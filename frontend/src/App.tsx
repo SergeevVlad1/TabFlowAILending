@@ -10,6 +10,7 @@ import {
   Activity,
   ChevronRight,
   Play,
+  Check,
 } from "lucide-react";
 
 function App() {
@@ -31,8 +32,9 @@ function App() {
             const sectionId = entry.target.id;
             if (sectionId === "hero") setActiveSection(0);
             if (sectionId === "features") setActiveSection(1);
-            if (sectionId === "faq") setActiveSection(2);
-            if (sectionId === "cta") setActiveSection(3);
+            if (sectionId === "pricing") setActiveSection(2);
+            if (sectionId === "faq") setActiveSection(3);
+            if (sectionId === "cta") setActiveSection(4);
           }
         });
       },
@@ -62,6 +64,14 @@ function App() {
     }
   };
 
+  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
+    e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
     <div className="min-h-screen bg-background dot-pattern text-white font-sans overflow-x-hidden selection:bg-white/20">
       {/* Fixed Pagination */}
@@ -69,6 +79,7 @@ function App() {
         {[
           { id: "hero", label: "Intro" },
           { id: "features", label: "Features" },
+          { id: "pricing", label: "Pricing" },
           { id: "faq", label: "FAQ" },
           { id: "cta", label: "Install" }
         ].map((item, i) => (
@@ -104,6 +115,9 @@ function App() {
           <div className="hidden md:flex items-center gap-10 text-sm font-medium text-gray-400">
             <button onClick={() => scrollTo("features")} className="hover:text-white transition-colors">
               Features
+            </button>
+            <button onClick={() => scrollTo("pricing")} className="hover:text-white transition-colors">
+              Pricing
             </button>
             <button onClick={() => scrollTo("how-it-works")} className="hover:text-white transition-colors">
               How it works
@@ -264,8 +278,13 @@ function App() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    onMouseMove={handleCardMouseMove}
                     className="flex-1 w-full relative group"
                   >
+                    <div 
+                      className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 rounded-[2.5rem]"
+                      style={{ background: 'radial-gradient(500px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255,255,255,0.06), transparent 40%)' }}
+                    />
                     <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                     <div className="relative glass p-2 rounded-[2rem] glow overflow-hidden">
                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]" />
@@ -310,6 +329,112 @@ function App() {
                   </motion.div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Pricing Section */}
+        <section id="pricing" className="py-32 px-6 relative flex flex-col justify-center">
+          <div className="max-w-7xl mx-auto w-full">
+            <div className="text-center mb-24">
+              <motion.h2 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUpVariant}
+                className="text-4xl md:text-6xl font-bold mb-8 tracking-tight"
+              >
+                Simple, transparent <span className="text-gray-400">pricing</span>
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                className="text-gray-400 text-xl max-w-2xl mx-auto font-light leading-relaxed"
+              >
+                Start organizing your workspace for free today. Upgrade only when you need unlimited cloud sync and advanced AI models.
+              </motion.p>
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto items-center md:items-stretch">
+              {/* Free Plan */}
+              <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                onMouseMove={handleCardMouseMove}
+                className="flex-1 w-full glass rounded-[2rem] p-10 flex flex-col relative overflow-hidden group border border-white/5 hover:border-white/10 transition-colors"
+              >
+                <div 
+                  className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"
+                  style={{ background: 'radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255,255,255,0.05), transparent 40%)' }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <h3 className="text-2xl font-bold mb-2">Basic</h3>
+                  <p className="text-gray-400 font-light mb-8">Everything you need to regain focus.</p>
+                  <div className="mb-8 flex items-baseline gap-2">
+                    <span className="text-5xl font-bold tracking-tight">$0</span>
+                    <span className="text-gray-500 font-medium">/forever</span>
+                  </div>
+                  <ul className="flex flex-col gap-4 mb-10 flex-1">
+                    {["Smart Tab Grouping", "Basic Task Capture", "Standard AI Models", "Local Storage", "Core Analytics"].map((feat, i) => (
+                      <li key={i} className="flex items-center gap-3 text-gray-300 font-light">
+                        <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                          <Check className="w-3 h-3 text-white" />
+                        </div>
+                        {feat}
+                      </li>
+                    ))}
+                  </ul>
+                  <a href="https://chromewebstore.google.com/detail/tabflowai-smart-tab-task/pekehccllcdlndjdhilngkindkbmmobb" target="_blank" rel="noreferrer" className="w-full bg-white/10 hover:bg-white/20 text-white py-4 rounded-xl font-medium text-center transition-colors">
+                    Current Plan
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Pro Plan */}
+              <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                onMouseMove={handleCardMouseMove}
+                className="flex-1 w-full glass rounded-[2rem] p-10 flex flex-col relative overflow-hidden group border-white/20 glow"
+              >
+                <div 
+                  className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"
+                  style={{ background: 'radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255,255,255,0.06), transparent 40%)' }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] to-transparent opacity-50" />
+                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-white to-transparent opacity-50" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex justify-between items-center mb-2">
+                    <h3 className="text-2xl font-bold">Pro</h3>
+                    <span className="bg-white text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Coming Soon</span>
+                  </div>
+                  <p className="text-gray-400 font-light mb-8">For power users who need cloud sync.</p>
+                  <div className="mb-8 flex items-baseline gap-2">
+                    <span className="text-5xl font-bold tracking-tight">$4.99</span>
+                    <span className="text-gray-500 font-medium">/month</span>
+                  </div>
+                  <ul className="flex flex-col gap-4 mb-10 flex-1">
+                    {["Advanced Gemini 3.1 Pro AI", "Unlimited Cloud Sync across devices", "Custom Pomodoro Tracks", "Advanced Visual Analytics", "Priority Support"].map((feat, i) => (
+                      <li key={i} className="flex items-center gap-3 text-white font-light">
+                        <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                          <Check className="w-3 h-3 text-white" />
+                        </div>
+                        {feat}
+                      </li>
+                    ))}
+                  </ul>
+                  <button disabled className="w-full bg-white/5 text-gray-500 py-4 rounded-xl font-medium text-center cursor-not-allowed">
+                    Join Waitlist
+                  </button>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
