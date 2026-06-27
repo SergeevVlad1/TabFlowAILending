@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { ChevronLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 

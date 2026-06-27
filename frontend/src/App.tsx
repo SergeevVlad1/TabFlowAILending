@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import logo from "./assets/TabFlowAI.png";
-import smallLogo from "./assets/TabFlowWhite2.png";
 import PrivacyPolicy from "./PrivacyPolicy";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import {
   LayoutDashboard,
   ListTodo,
   Timer,
   Activity,
-  ShieldCheck,
   ChevronRight,
   Play,
 } from "lucide-react";
@@ -55,7 +53,7 @@ function App() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const fadeUpVariant = {
+  const fadeUpVariant: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: { 
       opacity: 1, 
