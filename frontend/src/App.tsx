@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import logo from "./assets/TabFlowAI.png";
 import PrivacyPolicy from "./PrivacyPolicy";
 
-import { motion, Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import {
   LayoutDashboard,
   ListTodo,
