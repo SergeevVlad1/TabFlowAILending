@@ -126,9 +126,18 @@ function App() {
               Privacy
             </button>
           </div>
-          <a href="https://chromewebstore.google.com/detail/tabflowai-smart-tab-task/pekehccllcdlndjdhilngkindkbmmobb" target="_blank" rel="noreferrer" className="bg-white text-black hover:bg-gray-200 px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)] inline-flex items-center justify-center">
-            Get Started
-          </a>
+          <div className="flex items-center gap-4">
+            <a href="https://www.producthunt.com/products/tabflowai?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-tabflowai" target="_blank" rel="noopener noreferrer" className="hidden lg:block hover:scale-105 transition-transform duration-300">
+              <img 
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1182508&theme=dark" 
+                alt="Product Hunt" 
+                className="h-[38px] w-auto" 
+              />
+            </a>
+            <a href="https://chromewebstore.google.com/detail/tabflowai-smart-tab-task/pekehccllcdlndjdhilngkindkbmmobb" target="_blank" rel="noreferrer" className="bg-white text-black hover:bg-gray-200 px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)] inline-flex items-center justify-center whitespace-nowrap">
+              Get Started
+            </a>
+          </div>
         </div>
       </nav>
 
@@ -169,7 +178,7 @@ function App() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-6 mb-24 relative z-10"
+            className="flex flex-col sm:flex-row gap-6 mb-12 relative z-10"
           >
             <a href="https://chromewebstore.google.com/detail/tabflowai-smart-tab-task/pekehccllcdlndjdhilngkindkbmmobb" target="_blank" rel="noreferrer" className="bg-white text-black hover:bg-neutral-200 px-8 py-4 rounded-full font-semibold flex items-center justify-center gap-2 shadow-[0_0_30px_-5px_rgba(255,255,255,0.4)] transition-all transform hover:scale-[1.02]">
               Add to Chrome — It's Free
@@ -181,6 +190,24 @@ function App() {
               </div>
               Watch Demo
             </button>
+          </motion.div>
+
+          {/* Product Hunt Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+            className="mb-24 relative z-10"
+          >
+            <a href="https://www.producthunt.com/products/tabflowai?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-tabflowai" target="_blank" rel="noopener noreferrer">
+              <img 
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1182508&theme=dark" 
+                alt="TabFlowAI - AI-powered tab grouping & task organizer for Chrome | Product Hunt" 
+                width="250" 
+                height="54" 
+                className="hover:scale-105 transition-transform duration-300" 
+              />
+            </a>
           </motion.div>
 
           {/* Video Section */}
